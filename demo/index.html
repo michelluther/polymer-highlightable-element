@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>highlightable-element demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../paper-button/paper-button.html">
+    <link rel="import" href="../highlightable-element.html">
+    <style is="custom-style" include="demo-pages-shared-styles">
+    p {
+        padding: 10px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="vertical-section-container centered">
+        <h3>Highlighting Something from the outside</h3>
+        <demo-snippet>
+            <template>
+                <paper-button onclick="directHighlight.showHighlight()">Highlight</paper-button>
+                <paper-button id="directHighlighterbutton" onclick="directHighlight.removeHighlight()">Remove highlight</paper-button>
+                <highlightable-element id="directHighlight">
+                    <p>content to highlight</p>
+                </highlightable-element>
+            </template>
+        </demo-snippet>
+    </div>
+    <div class="vertical-section-container centered">
+        <h3>Highlighting stuff via an event from the inside</h3>
+        <demo-snippet>
+            <template>
+                <highlightable-element id="highlightIndirect">
+                    <p>Tap me for security</p>
+                    <paper-button id="viaEventHighlighterbutton" onclick="raiseHighLightEvent(event)">High light from within via event</paper-button>
+                    <paper-button id="viaEvenLowlighterbutton" onclick="raiseRemoveHighLightEvent(event)">Remove high light from within via event</paper-button>
+                </highlightable-element>
+                <script>
+                function raiseHighLightEvent(event) {
+                    event.target.fire('showHighlight');
+                }
+
+                function raiseRemoveHighLightEvent(event) {
+                    event.target.fire('removeHighlight');
+                }
+                </script>
+            </template>
+        </demo-snippet>
+    </div>
+    <div class="vertical-section-container centered">
+        <h3>Styling the highlight</h3>
+        <demo-snippet>
+            <template>
+                <style is="custom-style">
+                #styledHighlight {
+                    --highlight-background-color: #eee;
+                    --highlight-border-color: #ddd;
+                }
+                </style>
+                <paper-button onclick="styledHighlight.showHighlight()">Highlight</paper-button>
+                <paper-button id="directHighlighterbutton" onclick="styledHighlight.removeHighlight()">Remove highlight</paper-button>
+                <highlightable-element id="styledHighlight">
+                    <p>content to highlight</p>
+                </highlightable-element>
+            </template>
+        </demo-snippet>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+<dom-module id="highlightable-element">
+    <template>
+        <style>
+        :host {
+            display: block;
+            border: 1px solid transparent;
+            padding: var(--highlight-area-padding, '5px');
+        }
+        
+        :host[ishighlighted] {
+            background-color: var(--highlight-background-color, #ffcccc);
+            border: 1px solid var(--highlight-border-color, #ffbbbb);
+        } 
+
+
+        </style>
+        <content></content>
+    </template>
+    <script>
+    (function() {
+        'use strict';
+
+        Polymer({
+            is: 'highlightable-element',
+
+            properties: {
+                ishighlighted: {
+                    type: Boolean,
+                    value: false,
+                    reflectToAttribute: true
+                }
+            },
+
+            listeners: {
+                'showHighlight': 'showHighlight',
+                'removeHighlight': 'removeHighlight'
+            },
+
+            showHighlight: function(e) {
+                this.ishighlighted = true;
+            },
+
+            removeHighlight: function() {
+                this.ishighlighted = false;
+            }
+        });
+    })();
+    </script>
+</dom-module>
