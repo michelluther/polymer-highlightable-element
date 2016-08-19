@@ -48,10 +48,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             showHighlight: function(e) {
                 this.ishighlighted = true;
+                e.stopPropagation();
             },
 
-            removeHighlight: function() {
+            removeHighlight: function(e) {
                 this.ishighlighted = false;
+                e.stopPropagation();
             }
         });
     })();

@@ -1,6 +1,6 @@
 {
   "name": "highlightable-element",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A highlightable element meant to be wrapped around elements you want to highlight by changing the background-color",
   "main": "highlightable-element.html",
   "dependencies": {
