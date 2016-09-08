@@ -20,9 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         :host[ishighlighted] {
             background-color: var(--highlight-background-color, #ffcccc);
             border: 1px solid var(--highlight-border-color, #ffbbbb);
-        } 
-
-
+        }
         </style>
         <content></content>
     </template>
@@ -38,6 +36,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     type: Boolean,
                     value: false,
                     reflectToAttribute: true
+                },
+
+                enabled: {
+                    type: Boolean,
+                    value: true,
+                    reflectToAttribute: true
                 }
             },
 
@@ -47,8 +51,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             },
 
             showHighlight: function(e) {
-                this.ishighlighted = true;
-                e.stopPropagation();
+                if (this.enabled) {
+                    this.ishighlighted = true;
+                    e.stopPropagation();
+                }
             },
 
             removeHighlight: function(e) {
